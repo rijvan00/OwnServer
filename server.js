@@ -3,8 +3,6 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const url = require('url');
 const BodyParser = require('body-parser');
-const { Socket } = require('engine.io');
-const { get } = require('superagent');
 const PORT = process.env.PORT || 4000;
 app.use(BodyParser());
 
