@@ -4,7 +4,14 @@ const io = require("socket.io")(server);
 const url = require("url");
 const BodyParser = require("body-parser");
 const PORT = process.env.PORT || 4000;
-app.use(BodyParser());
+// parse various different custom JSON types as JSON
+app.use(bodyParser.json({ type: "application/*+json" }));
+
+// parse some custom thing into a Buffer
+app.use(bodyParser.raw({ type: "application/vnd.custom-type" }));
+
+// parse an HTML body into a string
+app.use(bodyParser.text({ type: "text/html" }));
 var clientResponseRef;
 
 app.get("/*", (req, res) => {
